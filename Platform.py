@@ -3,7 +3,7 @@ from pygame import *
 
 
 WIN_WIDTH = 800
-WIN_HEIGHT = 640
+WIN_HEIGHT = 600
 HALF_WIDTH = int(WIN_WIDTH / 2)
 HALF_HEIGHT = int(WIN_HEIGHT / 2)
 
@@ -18,7 +18,7 @@ def main():
     screen = pygame.display.set_mode(DISPLAY, FLAGS, DEPTH)
     pygame.display.set_caption("Use arrows to move!")
     timer =  pygame.time.Clock()
-    
+
     bgfile = "Background.png"
     up = down = left = right = running = False
     bg = pygame.image.load(bgfile).convert()
@@ -77,30 +77,30 @@ def main():
             if e.type == QUIT:  raise SystemExit ( "QUIT" )
             if e.type == KEYDOWN and e.key == K_ESCAPE:
                 raise SystemExit ( "ESCAPE" )
-            if e.type == KEYDOWN and e.key == K_UP:
+            if e.type == KEYDOWN and e.key == K_w:
                 up = True
-            if e.type == KEYDOWN and e.key == K_DOWN:
+            if e.type == KEYDOWN and e.key == K_s:
                 down = True
-            if e.type == KEYDOWN and e.key == K_LEFT:
+            if e.type == KEYDOWN and e.key == K_a:
                 left = True
-            if e.type == KEYDOWN and e.key == K_RIGHT:
+            if e.type == KEYDOWN and e.key == K_d:
                 right = True
             if e.type == KEYDOWN and e.key == K_SPACE:
                 running = True
 
-            if e.type == KEYUP and e.key == K_UP:
+            if e.type == KEYUP and e.key == K_w:
                 up = False
-            if e.type == KEYUP and e.key == K_DOWN:
+            if e.type == KEYUP and e.key == K_s:
                 down = False
-            if e.type == KEYUP and e.key == K_RIGHT:
+            if e.type == KEYUP and e.key == K_d:
                 right = False
-            if e.type == KEYUP and e.key == K_LEFT:
+            if e.type == KEYUP and e.key == K_a:
                 left = False
 
-       # for y in range(32):
-         #   for x in range(32):
-          #      screen.blit(bg, (x * 32, y * 32))
-        screen.blit ( bg, (0, 0))
+        #for y in range(32):
+        #    for x in range(32):
+         #       screen.blit(bg, (x * 32, y * 32))
+        screen.blit(bg, (0, 0))
 
         camera.update(player)
 
@@ -146,7 +146,7 @@ class Player(Entity):
         Entity.__init__(self)
         self.xvel = 0
         self.yvel = 0
-        self.OnGround = False
+        self.onGround = False
         self.image = Surface((32, 32))
         self.image.fill(Color("#0000FF"))
         self.image.convert()
@@ -154,8 +154,7 @@ class Player(Entity):
 
     def update(self, up, down, left, right, running, platforms):
         if up:
-            if self.OnGround:
-                self.yvel -= 10
+            if self.onGround: self.yvel -= 10
         if down:
             pass
         if running:
@@ -164,7 +163,7 @@ class Player(Entity):
             self.xvel = -8
         if right:
             self.xvel = 8
-        if not self.OnGround:
+        if not self.onGround:
             self.yvel += 0.3
             if self.yvel > 100: self.yvel = 100
         if not(left or right):
@@ -173,9 +172,8 @@ class Player(Entity):
         self.rect.left += self.xvel
         self.collide(self.xvel, 0, platforms)
         self.rect.top += self.yvel
-        self.OnGround = False
+        self.onGround = False
         self.collide(0, self.yvel, platforms)
-        self.OnGround = False
 
     def collide(self, xvel, yvel, platforms):
         for p in platforms:
@@ -190,7 +188,7 @@ class Player(Entity):
                     print ("collide left")
                 if yvel > 0:
                     self.rect.bottom = p.rect.top
-                    self.OnGround = True
+                    self.onGround = True
                     self.yvel = 0
                 if yvel < 0:
                     self.rect.top = p.rect.bottom
