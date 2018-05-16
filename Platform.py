@@ -22,7 +22,7 @@ def main():
     up = down = left = right = running = False
     bg = Surface((32,32))
     bg.convert()
-    bg.fill()
+    bg.fill(Color("#000000"))
     entities = pygame.sprite.Group()
     player = Player(32, 32)
     platforms = []
