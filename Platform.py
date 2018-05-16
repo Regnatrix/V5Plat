@@ -27,29 +27,29 @@ def main():
     platforms = []
 
     x = y = 0
-    level =  ["ppppppppppppppppppppppppppppppppppppppppppppppppppppp",
-              "p                                                   p",
-              "p  pppppppppp                                       p",
-              "p                           ppppppppppppppppppp     p",
-              "p                                                   p",
-              "p         ppppppppppp                               p",
-              "p                                                   p",
-              "p                             ppppppppppp           p",
-              "p                                                   p",
-              "p              pppppppppp                           p",
-              "p     pppppppppp                                    p",
-              "p                                                   p",
-              "p                                                   p",
-              "p                         pppppppppp                p",
-              "p                                                   p",
-              "p                                                   p",
-              "p          pppp    pppp                             p",
-              "p                              pppppp               p",
-              "p     ppppp                                         p",
-              "p                                                   p",
-              "p                                              pppp p",
-              "p                                                   E",
-              "ppppppppppppppppppppppppppppppppppppppppppppppppppppp"]
+    level =  ["ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+              "p              p                                              p",
+              "pppp           p              pppppppp                        E",
+              "p              p                           p              ppppp",
+              "p              p                           p      pp          p",
+              "p    pppppppppppppp                        p                  p",
+              "p                           pp             p                  p",
+              "p                                      ppppppppppp            p",
+              "p                                                             p",
+              "p              ppppppppppp                                    p",
+              "p         pppppp                                    pp        p",
+              "p             p                                               p",
+              "p             p     ppp                                       p",
+              "p             p            pppppppp           ppp          pppp",
+              "p             p                               p               p",
+              "p             ppp                             p               p",
+              "p             p      pp                       p     pp        p",
+              "p             p       p     p     pppp        p               p",
+              "p     pp  ppppppppppppp                       p               p",
+              "p     pp                        pp            p         pp    p",
+              "p     pp          pp                          p               p",
+              "p     pp          p                           p               p",
+              "ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp"]
 
     for row in level:
         for col in row:
@@ -147,14 +147,12 @@ class Player(Entity):
         self.xvel = 0
         self.yvel = 0
         self.onGround = False
-        self.image = Surface((32, 32))
-        self.image.fill(Color("#0000FF"))
-        self.image.convert()
+        self.image = pygame.image.load("stelpa.jpg")
         self.rect = Rect(x, y, 32, 32)
 
     def update(self, up, down, left, right, running, platforms):
         if up:
-            if self.onGround: self.yvel -= 10
+            if self.onGround: self.yvel -= 9
         if down:
             pass
         if running:
@@ -196,9 +194,10 @@ class Player(Entity):
 class Platform(Entity):
     def __init__(self, x, y):
         Entity.__init__(self)
-        self.image = Surface((32, 32))
-        self.image.convert()
-        self.image.fill(Color("#DDDDDD"))
+       # self.image = Surface((32, 32))
+       # self.image.convert()
+       # self.image.fill(Color("#DDDDDD"))
+        self.image = pygame.image.load("brick.png")
         self.rect = Rect(x, y, 32, 32)
 
     def update(self):
