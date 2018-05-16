@@ -18,11 +18,10 @@ def main():
     screen = pygame.display.set_mode(DISPLAY, FLAGS, DEPTH)
     pygame.display.set_caption("Use arrows to move!")
     timer =  pygame.time.Clock()
-
+    
+    bgfile = "Background.png"
     up = down = left = right = running = False
-    bg = Surface((32,32))
-    bg.convert()
-    bg.fill(Color("#000000"))
+    bg = pygame.image.load(bgfile).convert()
     entities = pygame.sprite.Group()
     player = Player(32, 32)
     platforms = []
@@ -98,9 +97,10 @@ def main():
             if e.type == KEYUP and e.key == K_LEFT:
                 left = False
 
-        for y in range(32):
-            for x in range(32):
-                screen.blit(bg, (x * 32, y * 32))
+       # for y in range(32):
+         #   for x in range(32):
+          #      screen.blit(bg, (x * 32, y * 32))
+        screen.blit ( bg, (0, 0))
 
         camera.update(player)
 
