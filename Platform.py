@@ -77,24 +77,24 @@ def main():
             if e.type == QUIT:  raise SystemExit ( "QUIT" )
             if e.type == KEYDOWN and e.key == K_ESCAPE:
                 raise SystemExit ( "ESCAPE" )
-            if e.type == KEYDOWN and e.key == K_w:
+            if e.type == KEYDOWN and e.key == K_UP:
                 up = True
-            if e.type == KEYDOWN and e.key == K_s:
+            if e.type == KEYDOWN and e.key == K_DOWN:
                 down = True
-            if e.type == KEYDOWN and e.key == K_a:
+            if e.type == KEYDOWN and e.key == K_LEFT:
                 left = True
-            if e.type == KEYDOWN and e.key == K_d:
+            if e.type == KEYDOWN and e.key == K_RIGHT:
                 right = True
             if e.type == KEYDOWN and e.key == K_SPACE:
                 running = True
 
-            if e.type == KEYUP and e.key == K_w:
+            if e.type == KEYUP and e.key == K_UP:
                 up = False
-            if e.type == KEYUP and e.key == K_s:
+            if e.type == KEYUP and e.key == K_DOWN:
                 down = False
-            if e.type == KEYUP and e.key == K_d:
+            if e.type == KEYUP and e.key == K_RIGHT:
                 right = False
-            if e.type == KEYUP and e.key == K_a:
+            if e.type == KEYUP and e.key == K_LEFT:
                 left = False
 
         #for y in range(32):
